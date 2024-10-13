@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../Components/Header";
-import Movies from "../Components/Movies";
+import Navigation from "../Components/Navigation";
 
 const Home = () => {
   return (
     <div>
       <Header />
-      <Movies />
+      <Navigation />
     </div>
   );
 };
