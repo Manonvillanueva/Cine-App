@@ -14,33 +14,39 @@ const Navigation = () => {
       .then((res) => setData(res.data.results));
   }, [search]);
   return (
-    <div>
-      <div className="navigationContainer">
-        <input
-          type="text"
-          placeholder="Entrez le titre d'un film"
-          onChange={(e) =>
-            e.target.value ? setSearch(e.target.value) : setSearch("code")
-          }
-        />
-        <button onClick={() => setSortVote("badToGood")}>
-          Top <i className="fa-solid fa-arrow-up"></i>
-        </button>
-        <button onClick={() => setSortVote("goodToBad")}>
-          Flop <i className="fa-solid fa-arrow-down"></i>
-        </button>
+    <div className="navigationContainer">
+      <div className="formContainer">
+        <div className="inputContainer">
+          <input
+            type="text"
+            placeholder="Entrez le titre d'un film"
+            onChange={(e) =>
+              e.target.value ? setSearch(e.target.value) : setSearch("code")
+            }
+          />
+        </div>
+        <div className="btnContainer">
+          <button onClick={() => setSortVote("badToGood")}>
+            Top <i className="fa-solid fa-arrow-up"></i>
+          </button>
+          <button onClick={() => setSortVote("goodToBad")}>
+            Flop <i className="fa-solid fa-arrow-down"></i>
+          </button>
+        </div>
       </div>
-      {data
-        .sort((a, b) => {
-          if (sortVote === "badToGood") {
-            return a.vote_average - b.vote_average;
-          } else if (sortVote === "goodToBad") {
-            return b.vote_average - a.vote_average;
-          }
-        })
-        .map((movie) => (
-          <Cards key={movie.id} movie={movie} />
-        ))}
+      <ul>
+        {data
+          .sort((a, b) => {
+            if (sortVote === "badToGood") {
+              return b.vote_average - a.vote_average;
+            } else if (sortVote === "goodToBad") {
+              return a.vote_average - b.vote_average;
+            }
+          })
+          .map((movie) => (
+            <Cards key={movie.id} movie={movie} />
+          ))}
+      </ul>
     </div>
   );
 };
