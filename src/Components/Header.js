@@ -5,12 +5,16 @@ const Header = () => {
   return (
     <div className="headerContainer">
       <ul className="ulNavigation">
+        {/* => Lien pour la page Accueil */}
         <li>
+          {/* =>Rajout de la classe a-active pour le style  */}
           <NavLink to="/" className={(nav) => (nav.isActive ? "a-active" : "")}>
             Accueil
           </NavLink>
         </li>
+        {/* => Lien pour la page coups de coeur  */}
         <li>
+          {/* =>Rajout de la classe a-active pour le style  */}
           <NavLink
             to="/favorites"
             className={(nav) => (nav.isActive ? "a-active" : "")}
@@ -19,6 +23,7 @@ const Header = () => {
           </NavLink>
         </li>
       </ul>
+      {/* => Titre du site  */}
       <h1>React Movies</h1>
     </div>
   );
