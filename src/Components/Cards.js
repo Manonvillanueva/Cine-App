@@ -7,6 +7,9 @@ const Cards = ({ movie }) => {
   const [dataGenre, setDataGenre] = useState([]);
 
   const filterGenre = () => {
+    if (movie.genres) {
+      return movie.genres.map((genre) => <li>{genre.name}</li>);
+    }
     return dataGenre
       .filter((category) => movie.genre_ids.includes(category.id))
       .map((category) => <li>{category.name}</li>);
@@ -27,7 +30,7 @@ const Cards = ({ movie }) => {
         "https://api.themoviedb.org/3/genre/movie/list?api_key=cd100debd32790befdf1a810dcd36ddd&language=fr-FR"
       )
       .then((res) => setDataGenre(res.data.genres));
-  }, []);
+  }, [movie.genre_ids]);
 
   return (
     <li>
@@ -49,7 +52,7 @@ const Cards = ({ movie }) => {
         {Math.round(movie.vote_average * 10) / 10} / 10
         <i className="fa-solid fa-star"></i>
       </p>
-      {/* <ul>{filterGenre()}</ul> */}
+      <ul>{filterGenre()}</ul>
       <button onClick={addFavorites}>Ajouter aux favoris</button>
     </li>
   );
