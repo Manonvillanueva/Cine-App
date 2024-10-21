@@ -8,19 +8,25 @@ const Cards = ({ movie }) => {
 
   const filterGenre = () => {
     if (movie.genres) {
-      return movie.genres.map((genre) => <li>{genre.name}</li>);
+      return movie.genres.map((genre) => <li key={genre.id}>{genre.name}</li>);
     }
     return dataGenre
       .filter((category) => movie.genre_ids.includes(category.id))
-      .map((category) => <li>{category.name}</li>);
+      .map((category) => <li key={category.id}>{category.name}</li>);
   };
 
-  const addFavorites = () => {
+  const addOrDeleteFavorite = () => {
     const savedMovie = localStorage.getItem("movie");
     let favMovie = savedMovie ? JSON.parse(savedMovie) : [];
-    if (!favMovie.includes(movie.id)) {
-      favMovie.push(movie.id);
-      localStorage.setItem("movie", JSON.stringify(favMovie));
+    if (movie.genre_ids) {
+      if (!favMovie.includes(movie.id)) {
+        favMovie.push(movie.id);
+        localStorage.setItem("movie", JSON.stringify(favMovie));
+      }
+    } else {
+      const newData = favMovie.filter((id) => id !== movie.id);
+      localStorage.setItem("movie", JSON.stringify(newData));
+      window.location.reload();
     }
   };
 
@@ -30,10 +36,10 @@ const Cards = ({ movie }) => {
         "https://api.themoviedb.org/3/genre/movie/list?api_key=cd100debd32790befdf1a810dcd36ddd&language=fr-FR"
       )
       .then((res) => setDataGenre(res.data.genres));
-  }, [movie.genre_ids]);
+  }, []);
 
   return (
-    <li>
+    <li id="listMovie">
       <img
         src={
           movie.backdrop_path
@@ -47,13 +53,21 @@ const Cards = ({ movie }) => {
             1. .split("-"), qui divise la chaîne au niveau des tirets en créant un tableau
             2. .reverse() inverse l'ordre des éléments du tableau
             3. .join("-") reconstruit une chaîne de caractère en concaténant tous les éléments du tableau , séparés par des tirets */}
-      <p>Sorti le : {movie.release_date.split("-").reverse().join("-")}</p>
+      <p>
+        Sorti le :
+        {movie.release_date
+          ? movie.release_date.split("-").reverse().join("-")
+          : null}
+      </p>
       <p>
         {Math.round(movie.vote_average * 10) / 10} / 10
         <i className="fa-solid fa-star"></i>
       </p>
-      <ul>{filterGenre()}</ul>
-      <button onClick={addFavorites}>Ajouter aux favoris</button>
+      <ul>{movie.genre_ids || movie.genres ? filterGenre() : null}</ul>
+      <p>{movie.overview}</p>
+      <button onClick={addOrDeleteFavorite}>
+        {movie.genre_ids ? "Ajouter aux favoris" : "Supprimer de mes favoris"}
+      </button>
     </li>
   );
 };

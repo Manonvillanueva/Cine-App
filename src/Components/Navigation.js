@@ -6,6 +6,7 @@ const Navigation = () => {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("code");
   const [sortVote, setSortVote] = useState(null);
+
   useEffect(() => {
     axios
       .get(
@@ -13,6 +14,7 @@ const Navigation = () => {
       )
       .then((res) => setData(res.data.results));
   }, [search]);
+
   return (
     <div className="navigationContainer">
       <div className="formContainer">
