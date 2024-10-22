@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dongle&display=swap");
 
+/* ----GENERAL-----------  */
 * {
   padding: 0;
   margin: 0;
@@ -15,6 +16,7 @@ body {
   padding: 20px;
 }
 
+/* ----NAVIGATION-----------  */
 .ulNavigation {
   display: flex;
   gap: 10px;
@@ -93,14 +95,108 @@ h1 {
   border-radius: 0 0 10px 0;
 }
 
+/* ----CARDS-----------  */
+#ulListMovie,
+#favoriteListMovie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
 #listMovie {
-  width: 280px;
-  height: 690px;
+  width: 270px;
+  height: 665px;
   background: #060d2c;
-  border-radius: 10px;
+  border-radius: 20px;
+  padding: 20px 5px;
 }
 
 img {
-  height: 250px;
+  height: 245px;
   width: 80%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 20%;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 8px 1px #2b304b, 0 16px 1px #141937;
+}
+
+#headerCard {
+  height: 115px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 25px 0 10px 0;
+}
+
+h2 {
+  line-height: 20px;
+}
+
+#releaseDate {
+  font-size: 20px;
+  color: rgb(100, 100, 100);
+}
+
+#note {
+  display: flex;
+  font-size: 19px;
+}
+
+#note i {
+  color: yellow;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+#ulGenre {
+  display: flex;
+  gap: 5px;
+}
+
+#ulGenre li {
+  background: #212040;
+  border-radius: 5px;
+  padding: 0 5px;
+}
+
+#overviewSynopsis {
+  color: rgb(100, 100, 100);
+  line-height: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  overflow: hidden;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+#synopsis {
+  color: rgb(238, 238, 238);
+  font-size: 22px;
+}
+
+#btnContainer {
+  text-align: center;
+}
+
+#btnContainer button {
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #536fe4;
+  border: none;
+  padding: 0 10px;
+  border-radius: 10px;
+  color: rgb(238, 238, 238);
+  margin-top: 10px;
+  transition: 0.4s;
+}
+
+#btnContainer button:hover {
+  color: #222040;
+  box-shadow: 0 0 10px #546ee4d2;
+  transform: scale(1.1);
 }

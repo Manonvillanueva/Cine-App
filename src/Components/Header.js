@@ -4,19 +4,19 @@ import { NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <div className="headerContainer">
-      {/* => Titre du site  */}
+      {/* Titre du site  */}
       <h1>React Movies</h1>
       <ul className="ulNavigation">
-        {/* => Lien pour la page Accueil */}
+        {/* Lien pour la page Accueil */}
         <li>
-          {/* =>Rajout de la classe a-active pour le style  */}
+          {/* Rajout de la classe a-active pour le style  */}
           <NavLink to="/" className={(nav) => (nav.isActive ? "a-active" : "")}>
             Accueil
           </NavLink>
         </li>
-        {/* => Lien pour la page coups de coeur  */}
+        {/* Lien pour la page coups de coeur  */}
         <li>
-          {/* =>Rajout de la classe a-active pour le style  */}
+          {/* Rajout de la classe a-active pour le style  */}
           <NavLink
             to="/favorites"
             className={(nav) => (nav.isActive ? "a-active" : "")}
